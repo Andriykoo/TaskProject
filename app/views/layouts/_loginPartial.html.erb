@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+
+    <li class="dropdown">
+      <a class="hvr-sweep-to-bottom" href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <%=current_user.email if !current_user.nil?%>
+      </a>
+      <ul class="dropdown-menu ">
+        <li class="hvr-shutter-out-horizontal">Profile </li>
+
+        <li class="hvr-shutter-out-horizontal">Task</li>
+
+        <li class="divider"></li>
+
+        <li class="hvr-shutter-out-horizontal">
+          <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+        </li>
+      </ul>
+    </li>
+
+<% else %>
+  <li class="hvr-sweep-to-bottom"><%= link_to 'Register', new_user_registration_path, {:class=>"page-scroll"}%></li>
+  <li class="hvr-sweep-to-bottom"><%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+
+
+
