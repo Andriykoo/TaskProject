@@ -1,6 +1,7 @@
 <table class="table table-striped table-hover ">
   <thead>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Email</th>
 
@@ -11,16 +12,21 @@
   <%@users.each do |user|%>
   <tr>
 
-    <td><%=user.email%></td>
+    <td>
+      <div class="user-image"><%= gravatar_for user %></div>
+    </td>
+    <td><%=user.name%></td>
     <td><%=user.email%></td>
     <td>
+      <%= link_to 'User Tasks | ', user_index_path(id: user.id), {class:"page-scroll"}%>
+
       <%if current_user.has_role? :admin  %>
-          <%= link_to 'Details | ', user_index_path(id: user.id), {class:"page-scroll"}%>
           <%= link_to 'Edit | ', user_edit_path(id: user.id), {class:"page-scroll"}%>
           <%= link_to 'Delete', user_destroy_path(id: user.id), class:"page-scroll",
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
       <%end%>
+
     </td>
 
 

@@ -3,6 +3,7 @@ class UserController < ApplicationController
   before_filter :is_admin? , only: :show
 
   def index
+    @user=set_user
   end
 
   def show
@@ -36,14 +37,31 @@ class UserController < ApplicationController
     binding.pry
     if @user.destroy
       flash[:success] = "User destroy"
-      redirect_to user_destroy_path
+      redirect_to user_show_path
     else
       flash[:error] = "User cannot destroy"
-      redirect_to user_destroy_path
+      redirect_to user_show_path
+    end
+  end
+
+  def update_password
+    @user = current_user
+      if @user.update_with_password(user_password_params)
+        sign_in @user, bypass: true
+        redirect_to "index"
+      else
+        render 'edit_password'
+      end
+
     end
 
 
+  def edit_password
+    @user=current_user
   end
+
+
+
 
   private
   def is_admin?
@@ -64,7 +82,13 @@ class UserController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :name)
+  end
+
+  private
+  def user_password_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 
 end

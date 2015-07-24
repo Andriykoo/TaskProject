@@ -30,3 +30,9 @@
 @extend .control-group;
 @extend .error;
 }
+
+div.user-image img.img-circle {
+    position: static;
+    left: 135px;
+    top: 210px;
+}
