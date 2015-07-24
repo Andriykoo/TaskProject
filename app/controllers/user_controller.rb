@@ -11,7 +11,7 @@ class UserController < ApplicationController
   end
 
   def edit
-   # binding.pry
+    binding.pry
    unless set_user.nil?
      @user=set_user
    else
@@ -22,10 +22,13 @@ class UserController < ApplicationController
 
   def update
     @user = set_user
-
     if @user.update(user_params)
       flash[:success] = "Profile updated"
-      redirect_to user_show_path
+      if @user==current_user
+      redirect_to user_index_path
+      else
+        redirect_to user_show_path
+      end
     else
       render 'edit'
     end
@@ -47,7 +50,7 @@ class UserController < ApplicationController
   def update_password
     @user = current_user
       if @user.update_with_password(user_password_params)
-        sign_in @user, bypass: true
+        sign_in :user, @user, bypass: true
         redirect_to "index"
       else
         render 'edit_password'
@@ -74,11 +77,10 @@ class UserController < ApplicationController
     end
   end
 
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      return User.find_by(id: params[:id])
-    end
+  private
+  def set_user
+    return User.find_by(id: params[:id])
+  end
 
   private
   def user_params
@@ -87,7 +89,6 @@ class UserController < ApplicationController
 
   private
   def user_password_params
-    # NOTE: Using `strong_parameters` gem
     params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 

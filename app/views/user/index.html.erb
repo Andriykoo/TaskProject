@@ -10,13 +10,23 @@
           <dt>Email: </dt>
           <dd><%=@user.email%></dd>
 
-          <dt>Password:</dt>
+
           <dd>
             <div class="btn btn-warning btn-xs">
               <%= link_to "Change your password", user_change_password_path %>
             </div>
           </dd>
+          <dd>
+            <div class="btn btn-warning btn-xs">
+              <%= link_to "Change your profile", user_edit_path(id: current_user.id)  %>
+            </div>
+          </dd>
+          <dd>
+            <div class="btn btn-default  ">
+              <%= link_to "Your Tasks", "#(id: current_user.id)"  %>
+            </div>
 
+          </dd>
         </dl>
       </div>
     </div>
