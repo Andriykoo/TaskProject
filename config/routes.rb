@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/index',   to: 'home#Index', via: 'get'
+  get '/users', to: 'user#show', as: :user_show
+  get '/users/index/:id', to: 'user#index', as: :user_index
+  get '/users/edit/:id', to: 'user#edit', as: :user_edit
+  post '/users/update/:id', to: 'user#update', as: :user_update
+  delete '/users/destroy/:id', to: 'user#destroy', as: :user_destroy
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
