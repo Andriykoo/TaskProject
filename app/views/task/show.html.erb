@@ -1,7 +1,11 @@
-<h1>Show All Tasks</h1>
+<h1>Tasks</h1>
 
-<%@tasks.each do |task|%>
-    <%=render partial: "task/user_task", locals:{task: task} %>
-<% end%>
+<%if @tasks.nil?%>
 
+    <h1>No task</h1>
+    <%else%>
+    <%@tasks.each do |task|%>
+        <%=render partial: "task/user_task", locals:{task: task} %>
+    <% end%>
+<%end%>
 <%= link_to 'Add Task', task_add_path, {class:"btn btn-default btn-lg"}%>

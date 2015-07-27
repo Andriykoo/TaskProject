@@ -11,7 +11,6 @@ class UserController < ApplicationController
   end
 
   def edit
-    binding.pry
    unless set_user.nil?
      @user=set_user
    else
@@ -37,7 +36,6 @@ class UserController < ApplicationController
 
   def destroy
     @user = set_user
-    binding.pry
     if @user.destroy
       flash[:success] = "User destroy"
       redirect_to user_show_path
