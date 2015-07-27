@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724173556) do
+ActiveRecord::Schema.define(version: 20150726123113) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 20150724173556) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "share_tasks", force: :cascade do |t|
+    t.integer  "tasks_id"
+    t.integer  "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "share_tasks", ["tasks_id"], name: "index_share_tasks_on_tasks_id"
+  add_index "share_tasks", ["users_id"], name: "index_share_tasks_on_users_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "title"
+    t.string   "text"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

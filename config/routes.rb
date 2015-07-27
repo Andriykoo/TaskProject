@@ -15,6 +15,15 @@ Rails.application.routes.draw do
   post '/user/update_password', to: 'user#update_password', as: :user_update_password
   get '/user/edit_password', to: 'user#edit_password', as: :user_change_password
 
+  get '/tasks', to: 'task#show', as: :task_show
+  get '/task/show/:id', to: 'task#show_task_user', as: :task_show_user
+  get '/task/edit/:id', to: 'task#edit', as: :task_edit
+  get '/task/add', to: 'task#add', as: :task_add
+  post '/task/new', to: 'task#new', as: :task_new
+  post '/task/update/:id', to: 'task#update', as: :task_update
+  delete '/task/destroy/:id', to: 'task#destroy', as: :task_destroy
+  post '/task/share/:id#:email', to: 'task#share' , as: :task_share
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

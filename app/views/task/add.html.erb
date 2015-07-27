@@ -1,0 +1,11 @@
+<%= render partial: "task/error_message" %>
+<div class="form-horizontal">
+  <%= form_for( Task.new ,url: task_new_path ) do |f| %>
+    <%=render partial:"task/form_task" ,locals:{f:f}%>
+  <%end%>
+</div>
+
+
+<div>
+  <%= link_to "Back", :back %>
+</div>
