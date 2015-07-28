@@ -1,6 +1,5 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_admin? , only: :show
 
   def index
     @user=set_user

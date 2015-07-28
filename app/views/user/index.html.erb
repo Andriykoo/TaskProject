@@ -11,7 +11,7 @@
           <dd><%=@user.email%></dd>
 
 
-          <%if current_user.has_role? :admin %>
+          <%if current_user.id==@user.id %>
               <dd>
                 <div class="btn btn-warning btn-xs">
                   <%= link_to "Change your password", user_change_password_path %>

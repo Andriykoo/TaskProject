@@ -6,8 +6,38 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag "bootstrap.min.css" %>
   <%= stylesheet_link_tag "main.css" %>
-
-
+  <script>
+      $(document).ready(function(){
+          $(".sharebutton").on("click", function(event){
+              if ( $(this).next().hasClass('shareform-form') ){
+                  $(this).next().slideUp(300);
+                  var self = $(this);
+                  setTimeout( function(){ self.next().remove() }, 300 );
+                  return false;
+              }
+              var target = $(this).attr('href'),
+              // waiting_image = $('.gif-class'),
+                      form_after = $(this);
+              $.ajax({
+                  url: target,
+                  beforeSend: function(){
+                      // waiting_image.fadeIn(300);
+                  },
+                  success: function(response){
+                      var form = $($.parseHTML(response)).find("#shareform");
+                      form_after.after('<div class="shareform-form"></div>');
+                      form_after.next().hide().append(form);
+                      form_after.next().slideDown(300);
+                      // waiting_image.fadeOut(300);
+                  },
+                  error: function(){
+                      // waiting_image.fadeOut(300);
+                  },
+              });
+              event.preventDefault();
+          });
+      });
+  </script>
   <%= csrf_meta_tags %>
 </head>
 

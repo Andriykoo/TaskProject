@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   post '/task/new', to: 'task#new', as: :task_new
   post '/task/update/:id', to: 'task#update', as: :task_update
   delete '/task/destroy/:id', to: 'task#destroy', as: :task_destroy
-  post '/task/share/:id#:email', to: 'task#share' , as: :task_share
-
+  get '/task/share/:id', to: 'task#share' , as: :task_share
+  post '/task/share_for_user/:id', to: 'task#share_for_user' , as: :task_share_for_user
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

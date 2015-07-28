@@ -1,12 +1,17 @@
 <%= render partial: "task/error_message" %>
-<%=binding.pry%>
 <div class="form-horizontal">
   <%= form_for( Task.new ,url: task_new_path ) do |f| %>
+      <div class="form-group">
+        <%= label_tag :email_user, "Email User", class:"control-label col-md-2" %>
+        <div class="col-md-10">
+          <%= email_field :email, class:"form-control" %>
+        </div>
+      </div>
     <%=render partial:"task/form_task" ,locals:{f:f}%>
   <%end%>
 </div>
 
 
 <div>
-  <%= link_to "Back", :back %>
+  <%= link_to "Back", task_show_path %>
 </div>

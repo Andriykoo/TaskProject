@@ -18,7 +18,7 @@
     <td><%=user.name%></td>
     <td><%=user.email%></td>
     <td>
-      <%= link_to 'Details | ', user_index_path(id: user.id), {class:"page-scroll"}%>
+     
       <%= link_to 'User Tasks | ', task_show_user_path(id: user.id), {class:"page-scroll"}%>
       <%if current_user.has_role? :admin  %>
           <%= link_to 'Edit | ', user_edit_path(id: user.id), {class:"page-scroll"}%>

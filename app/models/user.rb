@@ -14,4 +14,11 @@ class User < ActiveRecord::Base
     self.add_role :user
   end
 
+
+  def has_task? (task)
+    @result= self.tasks.find{|p| (p.title==task.title && p.text==task.text)}
+    binding.pry
+    @result.nil?
+  end
+
 end

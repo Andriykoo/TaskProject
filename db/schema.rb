@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20150726123113) do
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "share_tasks", force: :cascade do |t|
-    t.integer  "tasks_id"
-    t.integer  "users_id"
+    t.integer  "task_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "share_tasks", ["tasks_id"], name: "index_share_tasks_on_tasks_id"
-  add_index "share_tasks", ["users_id"], name: "index_share_tasks_on_users_id"
+  add_index "share_tasks", ["task_id"], name: "index_share_tasks_on_task_id"
+  add_index "share_tasks", ["user_id"], name: "index_share_tasks_on_user_id"
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"

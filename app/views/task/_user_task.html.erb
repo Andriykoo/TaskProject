@@ -2,16 +2,19 @@
   <div class="panel panel-success">
     <div class="panel-heading text-center"><h4><%=task.title%></h4></div>
     <div class="panel-body">
+      <h5><%=task.updated_at.strftime('%c')%> </h5> <h5><%=task.get_email_person_share_task%>--> <%=task.user.email%>  </h5>
       <dl class="dl-horizontal col-sm-8">
         <dd><%=task.text%></dd>
         <dt></dt>
         <dd>
+          <%= link_to 'Share | ',task_share_path(id: task.id), {class:"page-scroll sharebutton"}%>
           <%if current_user.has_role? :admin  %>
               <%= link_to 'Edit | ', task_edit_path(id: task.id), {class:"page-scroll"}%>
               <%= link_to 'Delete', task_destroy_path(id: task.id), class:"page-scroll",
                           method: :delete,
-                          data: { confirm: 'Are you shure?' } %>
+                          data: { confirm: 'Are you sure?' } %>
           <%end%>
+
         </dd>
       </dl>
     </div>

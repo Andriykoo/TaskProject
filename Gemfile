@@ -12,6 +12,7 @@ gem 'devise'
 
 gem "rolify"
 
+gem 'fancybox2-rails'
 #gem 'will_paginate'
 
 # Use SCSS for stylesheets
