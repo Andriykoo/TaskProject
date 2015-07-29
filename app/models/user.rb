@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
 
   def has_task? (task)
     @result= self.tasks.find{|p| (p.title==task.title && p.text==task.text)}
-    binding.pry
     @result.nil?
   end
 

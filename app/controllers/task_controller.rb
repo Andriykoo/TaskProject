@@ -1,9 +1,7 @@
 class TaskController < ApplicationController
   before_filter :authenticate_user!
   def show
-
     @tasks= Task.all
-    @tasks=@tasks.uniq! {|p| p[:title] }
   end
 
   def new
@@ -57,11 +55,9 @@ class TaskController < ApplicationController
 
   def share_for_user
     binding.pry
-
-
-    binding.pry
     if Add_task_for_user_email({title:set_task.title,text:set_task.text},params[:email])
-      @share_task= ShareTask.new(task_id:params[:id] ,user_id: current_user.id)
+      @share_task= ShareTask.new(task_id:@task.id,user_id: current_user.id)
+      flash[:error] = "Error share! Something wrong!!!!" unless @share_task.save
       flash[:success] = "Task will share and get that for email"
       redirect_to task_show_path
     else
@@ -90,7 +86,6 @@ class TaskController < ApplicationController
       else
         return false
       end
-
     else
       flash[:error] = "Cannot find user with this email"
       return false
