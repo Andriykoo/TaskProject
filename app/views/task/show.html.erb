@@ -1,11 +1,22 @@
-<h1>Tasks</h1>
+<h2 class="tasks-title text-center">Tasks</h2>
 
-<%if @tasks.nil?%>
+<div class="tasks-block">
+  <%if @tasks.empty?%>
 
-    <h1>No task</h1>
-    <%else%>
-    <%@tasks.each do |task|%>
-        <%=render partial: "task/user_task", locals:{task: task} %>
-    <% end%>
-<%end%>
-<%= link_to 'Add Task', task_add_path, {class:"btn btn-default btn-lg"}%>
+      <h4 class="tasks-title text-center">There are no tasks for this user</h4>
+  <%else%>
+      <%@tasks.each do |task|%>
+          <%=render partial: "task/user_task", locals:{task: task} %>
+      <% end%>
+  <%end%>
+
+
+  <div class="col-md-4 col-sm-6 col-xs-12 contact-form single-task add-single-task wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
+    <div class="panel panel-success">
+      <div class="panel-heading text-center"><h4>Add Task</h4></div>
+      <div class="panel-body">
+        <%= link_to '+', task_add_path, {class: 'add-new-task'} %>
+      </div>
+    </div>
+  </div>
+</div>

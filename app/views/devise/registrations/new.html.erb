@@ -1,35 +1,30 @@
+<div class="container-fluid main login-page">
+  <h2 class="tasks-title text-center">Create a new account.</h2>
 
-<div class="col-lg-6">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name ),class:"form-horizontal") do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name )) do |f| %>
       <%= devise_error_messages! %>
+      <div class="field">
+        <div class="control-label"><%= f.label :email %></div>
+        <div class="maybe-error"><%= f.email_field :email, autofocus: true, class: "form-control" %></div>
+      </div>
 
-      <div class="panel panel-success" >
-        <div class="panel-heading text-center"><h4>Create a new account.</h4></div>
-          <div class="form-group">
-            <%= f.label :email,class:"col-md-2 control-label" %><br />
-            <div class="col-md-10">
-                <%= f.email_field :email, autofocus: true,class:"form-control" %>
-            </div>
-          </div>
+      <div class="field">
+        <div class="control-label">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </div>
+        <div class="maybe-error"><%= f.password_field :password, autocomplete: "off", class: "form-control" %></div>
+      </div>
 
-          <div class="form-group">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
+      <div class="field">
+        <div class="control-label"><%= f.label :password_confirmation%></div>
+        <div class="maybe-error"><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %></div>
+      </div>
 
-          <div class="form-group">
-            <%= f.label :password_confirmation%><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off" %>
-          </div>
-
-          <div class="text-center">
-            <%= f.submit "Sign up",class:"btn btn-success" %>
-          </div>
-        <% end %>
-
-
-  </div>
+      <div class="actions">
+        <div class="submit-button text-center"><%= f.submit "Sign up", class: "btn btn-success" %></div>
+      </div>
+  <% end %>
 </div>

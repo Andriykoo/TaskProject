@@ -1,30 +1,29 @@
-<div>
-  <div class="col-md-6 col-md-offset-3 contact-form wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-    <div class="panel panel-success">
-      <div class="panel-heading text-center"><h4>Change your account settings.</h4></div>
-      <div class="panel-body">
-        <div class="user-image col-sm-4"><%=gravatar_for current_user %></div>
-        <dl class="dl-horizontal col-sm-8">
-          <dt>Name: </dt>
-          <dd><%=@user.name%></dd>
-          <dt>Email: </dt>
-          <dd><%=@user.email%></dd>
+<div class="user-page col-md-6 col-md-offset-3 contact-form wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
+<div class="panel panel-success">
+  <div class="panel-heading text-center"><h4>Account settings</h4></div>
+  <div class="panel-body">
+    <div class="user-image col-sm-4 big-user-image"><%=gravatar_for current_user %></div>
+    <div class="col-sm-8">
 
-
-          <%if current_user.id==@user.id %>
-              <dd>
-                <div class="btn btn-warning btn-xs">
-                  <%= link_to "Change your password", user_change_password_path %>
-                </div>
-              </dd>
-              <dd>
-                <div class="btn btn-warning btn-xs">
-                  <%= link_to "Change your profile", user_edit_path(id: current_user.id)  %>
-                </div>
-              </dd>
-          <%end%>
-        </dl>
-      </div>
     </div>
+    <dl class="dl-horizontal col-sm-8 user-details">
+      <div class="user-single-info">
+        <dt>Name: </dt>
+        <dd><%=@user.name%></dd>
+      </div>
+      <div class="user-single-info">
+        <dt>Email: </dt>
+        <dd><%=@user.email%></dd>
+      </div>
+    </dl>
+    <%if current_user.id==@user.id %>
+        <div class="user-control-buttons text-center">
+          <%= link_to "Change your password", user_change_password_path, class: "btn btn-warning" %>
+          <%= link_to "Change your profile", user_edit_path(id: current_user.id), class: "btn btn-warning" %>
+        </div>
+
+
+    <%end%>
   </div>
+</div>
 </div>

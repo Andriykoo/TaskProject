@@ -1,23 +1,23 @@
+<div class="form-group">
+  <div class="control-label col-md-2">
+    <%= f.label :title %>
+  </div>
+  <div class="col-md-10 maybe-error">
+    <%= f.text_field :title, class:"form-control" %>
+  </div>
+</div>
 
-    <div class="form-group">
-      <%= f.label :title,class:"control-label col-md-2" %>
-      <div class="col-md-10">
-        <%= f.text_field :title, class:"form-control" %>
-      </div>
-    </div>
+<div class="form-group">
+  <div class="control-label col-md-2">
+    <%= f.label :text %>
+  </div>
+  <div class="col-md-10 maybe-error">
+    <%= f.text_area :text, class:"form-control", rows: "10" %>
+  </div>
+</div>
 
-    <div class="form-group">
-      <%= f.label :text,class:"control-label col-md-2" %>
-      <div class="col-md-10">
-        <%= f.text_area :text, class:"form-control" %>
-      </div>
-    </div>
-
-
-
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-10">
-        <%= f.submit "Save",class:"btn btn-default" %>
-      </div>
-    </div>
-
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-10">
+    <%= f.submit "Save",class:"btn btn-success" %>
+  </div>
+</div>

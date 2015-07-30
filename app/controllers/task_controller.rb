@@ -13,6 +13,10 @@ class TaskController < ApplicationController
     end
   end
 
+  def add
+    @task=Task.new
+  end
+
   def show_task_user
     @tasks=Task.where(user_id: params[:id])
     render 'show'
@@ -54,7 +58,6 @@ class TaskController < ApplicationController
   end
 
   def share_for_user
-    binding.pry
     if Add_task_for_user_email({title:set_task.title,text:set_task.text},params[:email])
       @share_task= ShareTask.new(task_id:@task.id,user_id: current_user.id)
       flash[:error] = "Error share! Something wrong!!!!" unless @share_task.save
@@ -73,7 +76,8 @@ class TaskController < ApplicationController
 
   private
   def Add_task_for_user_email(params,email)
-    @user=User.find_by(email:email.values)
+    @user=User.find_by(email:email)
+    @task=Task.new
     unless @user.nil?
       @task=Task.new(title: params[:title],text: params[:text],user_id:@user.id)
       if !@user.has_task? @task

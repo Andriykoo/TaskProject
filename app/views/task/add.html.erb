@@ -1,5 +1,4 @@
-<%= render partial: "task/error_message" %>
-<div class="form-horizontal">
+<!--<div class="form-horizontal">
   <%= form_for( Task.new ,url: task_new_path ) do |f| %>
       <div class="form-group">
         <%= label_tag :email_user, "Email User", class:"control-label col-md-2" %>
@@ -9,9 +8,25 @@
       </div>
     <%=render partial:"task/form_task" ,locals:{f:f}%>
   <%end%>
-</div>
+</div>-->
 
 
-<div>
-  <%= link_to "Back", task_show_path %>
+<h2 class="tasks-title text-center">Creating new task:</h2>
+<%= render partial: "task/error_message" %>
+<div class="container">
+    <div class="form-horizontal">
+      <%= form_for( @task ,url: task_new_path ) do |f| %>
+          <div class="form-group">
+            <div class="control-label col-md-2">
+              <%= f.label :email_user, "User e-mail" %>
+            </div>
+
+            <div class="col-md-10 maybe-error">
+              <%= email_field_tag :email,params[:email] , class:"form-control", required: "required" %>
+            </div>
+          </div>
+          <%=render partial:"task/form_task" ,locals:{f:f}%>
+      <%end%>
+    </div>
+  <%= link_to "< Back", task_show_path, class: "btn btn-default btn-back" %>
 </div>

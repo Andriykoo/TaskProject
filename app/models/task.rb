@@ -1,10 +1,10 @@
 class Task < ActiveRecord::Base
   belongs_to :user
-  has_many :share_tasks
+  has_many :share_tasks, dependent: :destroy
 
   validates :user_id, presence: true
   validates :text, presence: true
-
+  validates :title, presence: true
 
   def get_email_person_share_task
     @user_share_id=self.share_tasks.select(:user_id).distinct

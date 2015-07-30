@@ -87,8 +87,9 @@ Rails.application.configure do
       :port                 => 587,
       :authentication       => :plain,
       :domain               => "mydomail.com",
-      :user_name            => "vipandriy27@gmail.com",
-      :password             => "qwerty0011",
+      :user_name            => "junior.vipandriy",
+      :password             => "Aa123456!",
+
 
   }
 end

@@ -14,3 +14,37 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+(function($){
+    "use strict";
+    $(document).ready(function(){
+        $(".sharebutton").on("click", function(event){
+            if ( $(this).parent().next().hasClass('shareform-form') ){
+                $(this).parent().next().slideUp(300);
+                var self = $(this);
+                setTimeout( function(){ self.parent().next().remove() }, 300 );
+                return false;
+            }
+            var target = $(this).attr('href'),
+            // waiting_image = $('.gif-class'),
+                form_after = $(this).parent();
+            $.ajax({
+                url: target,
+                beforeSend: function(){
+                    // waiting_image.fadeIn(300);
+                },
+                success: function(response){
+                    var form = $($.parseHTML(response)).find(".shareform");
+                    form_after.after('<div class="shareform-form clearfix"></div>');
+                    form_after.next().hide().append(form);
+                    form_after.next().slideDown(300);
+                    // waiting_image.fadeOut(300);
+                },
+                error: function(){
+                    // waiting_image.fadeOut(300);
+                },
+            });
+            event.preventDefault();
+        });
+    });
+})(jQuery)

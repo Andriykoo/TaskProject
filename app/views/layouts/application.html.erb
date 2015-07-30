@@ -2,48 +2,14 @@
 <html>
 <head>
   <title>TestProject</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag "bootstrap.min.css" %>
-  <%= stylesheet_link_tag "main.css" %>
-  <script>
-      $(document).ready(function(){
-          $(".sharebutton").on("click", function(event){
-              if ( $(this).next().hasClass('shareform-form') ){
-                  $(this).next().slideUp(300);
-                  var self = $(this);
-                  setTimeout( function(){ self.next().remove() }, 300 );
-                  return false;
-              }
-              var target = $(this).attr('href'),
-              // waiting_image = $('.gif-class'),
-                      form_after = $(this);
-              $.ajax({
-                  url: target,
-                  beforeSend: function(){
-                      // waiting_image.fadeIn(300);
-                  },
-                  success: function(response){
-                      var form = $($.parseHTML(response)).find("#shareform");
-                      form_after.after('<div class="shareform-form"></div>');
-                      form_after.next().hide().append(form);
-                      form_after.next().slideDown(300);
-                      // waiting_image.fadeOut(300);
-                  },
-                  error: function(){
-                      // waiting_image.fadeOut(300);
-                  },
-              });
-              event.preventDefault();
-          });
-      });
-  </script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-    <header >
-      <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <nav id="mainNav">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -83,10 +49,11 @@
         <%= value %>
       </div>
       <% end %>
-      <div class="container">
         <%= yield %>
-      </div>
     </div>
+
+    <!-- JS includes -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 
 </html>
